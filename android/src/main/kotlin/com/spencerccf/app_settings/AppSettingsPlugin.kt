@@ -1,4 +1,4 @@
-package com.spencerccf.app_settings
+package com.myna1001_dev.app_settings
 
 import android.app.Activity
 import android.app.admin.DevicePolicyManager
@@ -28,7 +28,7 @@ class AppSettingsPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.spencerccf.app_settings/methods")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.myna1001_dev.app_settings/methods")
     channel.setMethodCallHandler(this)
   }
 
