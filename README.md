@@ -4,12 +4,15 @@
 
 A Flutter plugin for opening iOS and Android phone settings from an app.
 
-## Installation
-
-First, add `app_settings` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/app_settings).
+## Getting Started
+ 
+[Include 'app_settings' from Dart Pub.](https://pub.dartlang.org/packages/app_settings)
 
 ```dart
-flutter pub add app_settings
+dependencies:
+  flutter:
+    sdk: flutter
+  app_settings: 4.2.1
 ```
 
 Next, import 'app_settings.dart' into your dart code.
@@ -18,44 +21,82 @@ Next, import 'app_settings.dart' into your dart code.
 import 'package:app_settings/app_settings.dart';
 ```
 
+## Platform Specifics
+The following setting options available on both iOS and Android: 
+- openAppSettings
+- openWIFISettings
+- openLocationSettings
+- openSecuritySettings
+- openBluetoothSettings
+- openDataRoamingSettings
+- openDateSettings
+- openDisplaySettings
+- openNotificationSettings
+- openSoundSettings
+- openInternalStorageSettings
+- openBatteryOptimizationSettings
+- openDevelopmentSettings
+- openAPNSettings
 ### iOS
   ***TIP: If using Objective-C for iOS in your project, you will need to add `use_frameworks!` to your `Runner project podfile` in order to use this Swift plugin:***
+    
+    - target 'Runner' do
+        use_frameworks!
 
-```pod
-target 'Runner' do
-  use_frameworks!
+All options open the current 'app' settings section if there are settings defined.  If no current settings are defined for the app the iPhone Settings Screen will be displayed.
+
+### Android
+Each option will open and display the exact corresponding system settings screen: WIFI, Location, or Security, etc.
+
+Using the openAppSettings option will open the current 'app' settings for the running app.
+
+In some cases, to access directly the Bluetooth window, you will need to provide access permissions in the android/app/src/main/AndroidManifest.xml
+
+```dart
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.yourname.yourapp">   
+	 <uses-permission android:name="android.permission.BLUETOOTH" />  
+	 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  
+	 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  
+ <application
 ```
 
-## Usage
 
-Open the settings of the application using `AppSettings.openAppSettings()`.
-By default, `AppSettingsType.settings` is used as the type, which opens the general application settings.
-If the given type is not supported on the current platform, the general settings are opened instead.
 
-**Android** If `asAnotherTask` is set to true, the settings page is opened in a different Activity.
+## Example
+Example implementation using a raised button 'onPressed' event.  
 
 ```dart
 Widget build(BuildContext context) {
-  return ElevatedButton(
-    onPressed: () => AppSettings.openAppSettings(type: AppSettingsType.location),
-    child: const Text('Open Location Settings'),
-  );
+    return Row(
+        children: <Widget>[
+            RaisedButton(
+                onPressed: (() async {
+                  await AppSettings.openLocationSettings();
+                }),
+                child: Text('Open Location Settings'),
+            ),
+        ],
+    );
 }
 ```
 
-### Android Q Settings Panels
-
-To open a Settings Panel on Android Q and higher,
-call `AppSettings.openAppSettingsPanel()` with a given type.
+Example implementation using a raised button 'onPressed' event and custom function callback.  
 
 ```dart
 Widget build(BuildContext context) {
-  return ElevatedButton(
-    onPressed: () => AppSettings.openAppSettingsPanel(AppSettingsPanelType.volume),
-    child: const Text('Open Volume Settings Panel'),
-  );
+    return Row(
+        children: <Widget>[
+            RaisedButton(
+                onPressed: (() async {
+                  print('Before Calling AppSettings.openWIFISettings()');
+                  await AppSettings.openWIFISettings(callback: () {
+                    print("** Sample callback function called before anything else gets executed in dart");
+                  });
+                  print('After Calling AppSettings.openWIFISettings()');
+                }),
+                child: Text('Open Location Settings'),
+            ),
+        ],
+    );
 }
 ```
-
-Settings panels are not supported on other platforms.
-# app_settings

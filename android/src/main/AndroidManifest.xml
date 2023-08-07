@@ -1,2 +1,3 @@
-<manifest package="com.myna1001_dev.app_settings">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.example.appsettings">
 </manifest>
