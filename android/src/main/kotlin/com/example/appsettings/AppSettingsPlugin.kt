@@ -148,12 +148,6 @@ class AppSettingsPlugin() : MethodCallHandler, FlutterPlugin, ActivityAware {
             val intent = Intent()
             intent.setClassName("com.android.settings", "com.android.settings.TetherSettings")
             openSettingsWithCustomIntent(intent, asAnotherTask)
-        } else if (call.method == "apn") {
-            openSettings(Settings.ACTION_APN_SETTINGS, asAnotherTask)
-        } else if (call.method == "alarm") {
-            val uri = Uri.fromParts("package", this.activity.packageName, null)
-            openSettingsWithCustomIntent(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, uri), asAnotherTask)
         }
-        result.success("Done")
     }
 }

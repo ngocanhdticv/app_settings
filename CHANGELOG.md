@@ -7,18 +7,6 @@ All three options open the current 'app' settings section if there are settings 
 ### Android
 Each option will open and display the corresponding screen: WIFI, Location, or Security, etc.
 
-## 4.2.0
-Ability to provide optional custom callback function within settings request.
-
-## 4.1.9
-Ability to open APN settings.
-
-## 4.1.8
-Setting dart SDK for more future support < 3.0.0
-
-## 4.1.7
-Add support to Flutter <=3.0.1.
-
 ## 4.1.6
 Ability to open personal hotspot settings.
 Ability to open custom intents.

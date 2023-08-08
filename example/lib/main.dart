@@ -38,167 +38,149 @@ class _MyAppState extends State<MyApp> {
             appBar: AppBar(
               title: const Text('App Settings Example App'),
             ),
-            body: ListView.separated(
-              separatorBuilder: (context, index) => Divider(
-                color: Colors.blueGrey,
-              ),
-              itemCount: actionItems.length,
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.all(2.0),
-                child: actionItems[index],
-              ),
-            )));
+            body: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 2,
+                children: List.generate(actionItems.length, (index) {
+                  return Center(
+                      child: ButtonTheme(
+                    colorScheme: ColorScheme.dark(),
+                    minWidth: 150.0,
+                    child: actionItems[index],
+                  ));
+                }))));
   }
 
   List<Widget> getListOfActionButtons() {
     var actionItems = <Widget>[];
 
     actionItems.addAll([
-      ListTile(
-          title: Text('Example Call With Callback'),
-          minVerticalPadding: 5.0,
-          onTap: (() {
-            AppSettings.openWIFISettings(callback: () {
-              print("sample callback function called");
-            });
-          })),
-      ListTile(
-          title: Text('WIFI'),
-          minVerticalPadding: 5.0,
-          onTap: (() {
-            AppSettings.openWIFISettings();
-          })),
-      ListTile(
-        title: Text("Location"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("WIFI"),
+        onPressed: () {
+          AppSettings.openWIFISettings();
+        },
+      ),
+      ElevatedButton(
+        child: Text("Location"),
+        onPressed: () {
           AppSettings.openLocationSettings();
         },
       ),
-      ListTile(
-        title: Text("Security"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Security"),
+        onPressed: () {
           AppSettings.openSecuritySettings();
         },
       ),
-      ListTile(
-        title: Text("Lock & Password"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Lock & Password"),
+        onPressed: () {
           AppSettings.openLockAndPasswordSettings();
         },
       ),
-      ListTile(
-        title: Text("App Settings"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("App Settings"),
+        onPressed: () {
           AppSettings.openAppSettings();
         },
       ),
-      ListTile(
-        title: Text("Bluetooth"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Bluetooth"),
+        onPressed: () {
           AppSettings.openBluetoothSettings();
         },
       ),
-      ListTile(
-        title: Text("Data Roaming"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Data Roaming"),
+        onPressed: () {
           AppSettings.openDataRoamingSettings();
         },
       ),
-      ListTile(
-        title: Text("Date"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Date"),
+        onPressed: () {
           AppSettings.openDateSettings();
         },
       ),
-      ListTile(
-        title: Text("Display"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Display"),
+        onPressed: () {
           AppSettings.openDisplaySettings();
         },
       ),
-      ListTile(
-        title: Text("Notification"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Notification"),
+        onPressed: () {
           AppSettings.openNotificationSettings();
         },
       ),
-      ListTile(
-        title: Text("Sound"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Sound"),
+        onPressed: () {
           AppSettings.openSoundSettings();
         },
       ),
-      ListTile(
-        title: Text("Internal Storage"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Internal Storage"),
+        onPressed: () {
           AppSettings.openInternalStorageSettings();
         },
       ),
-      ListTile(
-        title: Text("Battery optimization"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Battery optimization"),
+        onPressed: () {
           AppSettings.openBatteryOptimizationSettings();
         },
       ),
-      ListTile(
-        title: Text("NFC"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("NFC"),
+        onPressed: () {
           AppSettings.openNFCSettings();
         },
       ),
-      ListTile(
-        title: Text("VPN"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("VPN"),
+        onPressed: () {
           AppSettings.openVPNSettings(
             asAnotherTask: true,
           );
         },
       ),
-      ListTile(
-        title: Text("Device Settings"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Device Settings"),
+        onPressed: () {
           AppSettings.openDeviceSettings(
             asAnotherTask: true,
           );
         },
       ),
-      ListTile(
-        title: Text("Accessibility"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Accessibility"),
+        onPressed: () {
           AppSettings.openAccessibilitySettings(
             asAnotherTask: true,
           );
         },
       ),
-      ListTile(
-        title: Text("Developer"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Developer"),
+        onPressed: () {
           AppSettings.openDevelopmentSettings(
             asAnotherTask: true,
           );
         },
       ),
-      ListTile(
-        title: Text("Hotspot"),
-        onTap: () {
+      ElevatedButton(
+        child: Text("Hotspot"),
+        onPressed: () {
           AppSettings.openHotspotSettings(
             asAnotherTask: true,
           );
         },
       ),
-      ListTile(
-        title: Text("APN"),
-        onTap: () {
-          AppSettings.openAPNSettings(asAnotherTask: true);
-        },
-      ),
-      ListTile(
-        title: Text("Alarm & Reminders"),
-        onTap: () {
-          AppSettings.openAlarmSettings(asAnotherTask: true);
-        },
-      ),
     ]);
+
     return actionItems;
   }
 
