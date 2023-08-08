@@ -12,7 +12,7 @@ A Flutter plugin for opening iOS and Android phone settings from an app.
 dependencies:
   flutter:
     sdk: flutter
-  app_settings: 4.2.1
+  app_settings: 4.1.6
 ```
 
 Next, import 'app_settings.dart' into your dart code.
@@ -22,21 +22,8 @@ import 'package:app_settings/app_settings.dart';
 ```
 
 ## Platform Specifics
-The following setting options available on both iOS and Android: 
-- openAppSettings
-- openWIFISettings
-- openLocationSettings
-- openSecuritySettings
-- openBluetoothSettings
-- openDataRoamingSettings
-- openDateSettings
-- openDisplaySettings
-- openNotificationSettings
-- openSoundSettings
-- openInternalStorageSettings
-- openBatteryOptimizationSettings
-- openDevelopmentSettings
-- openAPNSettings
+The following setting options available on both iOS and Android: openAppSettings, openWIFISettings, openLocationSettings, openSecuritySettings, openBluetoothSettings, openDataRoamingSettings
+, openDateSettings, openDisplaySettings, openNotificationSettings, openSoundSettings, openInternalStorageSettings, openBatteryOptimizationSettings
 ### iOS
   ***TIP: If using Objective-C for iOS in your project, you will need to add `use_frameworks!` to your `Runner project podfile` in order to use this Swift plugin:***
     
@@ -70,30 +57,7 @@ Widget build(BuildContext context) {
     return Row(
         children: <Widget>[
             RaisedButton(
-                onPressed: (() async {
-                  await AppSettings.openLocationSettings();
-                }),
-                child: Text('Open Location Settings'),
-            ),
-        ],
-    );
-}
-```
-
-Example implementation using a raised button 'onPressed' event and custom function callback.  
-
-```dart
-Widget build(BuildContext context) {
-    return Row(
-        children: <Widget>[
-            RaisedButton(
-                onPressed: (() async {
-                  print('Before Calling AppSettings.openWIFISettings()');
-                  await AppSettings.openWIFISettings(callback: () {
-                    print("** Sample callback function called before anything else gets executed in dart");
-                  });
-                  print('After Calling AppSettings.openWIFISettings()');
-                }),
+                onPressed: AppSettings.openLocationSettings(),
                 child: Text('Open Location Settings'),
             ),
         ],
